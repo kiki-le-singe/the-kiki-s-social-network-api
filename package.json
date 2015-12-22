@@ -16,7 +16,9 @@
   "keywords": [
     "nodejs",
     "heroku",
-    "express"
+    "express",
+    "mongodb",
+    "mongoose"
   ],
   "author": "Kiki le singe",
   "license": "MIT",
