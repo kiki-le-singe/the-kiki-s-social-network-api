@@ -1,13 +1,16 @@
 import { argv } from 'yargs';
 import express from 'express'; // Web framework
 import path from 'path'; // Utilities for dealing with file paths
-// import mongoose from 'mongoose'; // MongoDB integration
+import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import uniqid from 'uniqid';
 
 import toolsApi from './api/tools';
 import stubTools from './stubs/tools.json';
 import projectConfig from './config';
+
+// Schemas
+import { UserModel } from './schemas';
 
 const applicationRoot = __dirname;
 const app = express(); // define server
@@ -17,6 +20,30 @@ const STUB_MODE = !!argv.stub;
 app.use(bodyParser.urlencoded({ extended: true }));
 // where to serve static content
 app.use(express.static(path.join(applicationRoot, './public')));
+
+
+/* *******
+ DATABASE
+ See:
+  - http://stackoverflow.com/questions/11101955/mongodb-schema-design-for-multible-auth-user-accounts
+********** */
+const db = mongoose.connect('mongodb://localhost/the_kiki_s_social_network');
+const UserInstance = new UserModel({
+  username: `username`,
+  email: `mickey.${uniqid()}@disney.com`,
+  password: `${uniqid()}-mickey`,
+});
+
+UserInstance.save(function (err) {
+  console.log(err);
+});
+
+db.connection.on('error', () => {
+  console.log('connection failed to the database');
+});
+db.connection.on('open', () => {
+  console.log('connection established to the database');
+});
 
 
 /* ******************
