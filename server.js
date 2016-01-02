@@ -2,6 +2,7 @@ import { argv } from 'yargs';
 import express from 'express'; // Web framework
 import path from 'path'; // Utilities for dealing with file paths
 import mongoose from 'mongoose';
+import uriUtil from 'mongodb-uri';
 import bodyParser from 'body-parser';
 import uniqid from 'uniqid';
 
@@ -16,6 +17,15 @@ const applicationRoot = __dirname;
 const app = express(); // define server
 const STUB_MODE = !!argv.stub;
 
+/*
+ * Mongoose by default sets the auto_reconnect option to true.
+ * We recommend setting socket options at both the server and replica set level.
+ * We recommend a 30 second connection timeout because it allows for
+ * plenty of time in most operating environments.
+ */
+const options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } },
+                replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };
+
 // parses request body and populates request.body
 app.use(bodyParser.urlencoded({ extended: true }));
 // where to serve static content
@@ -27,7 +37,9 @@ app.use(express.static(path.join(applicationRoot, './public')));
  See:
   - http://stackoverflow.com/questions/11101955/mongodb-schema-design-for-multible-auth-user-accounts
 ********** */
-const db = mongoose.connect('mongodb://heroku_dhktzn7l:zzzzzz1@ds037165.mongolab.com:37165/heroku_dhktzn7l');
+const mongodbUri = 'mongodb://heroku_dhktzn7l:heroku_dhktzn7l@ds037165.mongolab.com:37165/heroku_dhktzn7l';
+const mongooseUri = uriUtil.formatMongoose(mongodbUri);
+const db = mongoose.connect(mongodbUri, options);
 // const db = mongoose.connect('mongodb://localhost/the_kiki_s_social_network');
 const UserInstance = new UserModel({
   username: `username`,
