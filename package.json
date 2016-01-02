@@ -37,7 +37,6 @@
     "body-parser": "^1.14.2",
     "colors": "^1.1.2",
     "express": "^4.13.3",
-    "mongodb-uri": "^0.9.7",
     "mongoose": "^4.3.3",
     "uniqid": "^1.0.0",
     "yargs": "^3.31.0"
