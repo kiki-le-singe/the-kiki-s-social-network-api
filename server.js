@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import uriUtil from 'mongodb-uri';
 import bodyParser from 'body-parser';
 import uniqid from 'uniqid';
+import colors from 'colors';
 
 import toolsApi from './api/tools';
 import stubTools from './stubs/tools.json';
@@ -52,10 +53,10 @@ UserInstance.save(function (err) {
 });
 
 db.connection.on('error', () => {
-  console.log('connection failed to the database');
+  console.log('connection failed to the database'.red);
 });
 db.connection.on('open', () => {
-  console.log('connection established to the database');
+  console.log('connection established to the database'.green);
 });
 
 
