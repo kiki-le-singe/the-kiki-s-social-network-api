@@ -27,7 +27,8 @@ app.use(express.static(path.join(applicationRoot, './public')));
  See:
   - http://stackoverflow.com/questions/11101955/mongodb-schema-design-for-multible-auth-user-accounts
 ********** */
-const db = mongoose.connect('mongodb://localhost/the_kiki_s_social_network');
+const db = mongoose.connect('mongodb://heroku_dhktzn7l:zzzzzz1@ds037165.mongolab.com:37165/heroku_dhktzn7l');
+// const db = mongoose.connect('mongodb://localhost/the_kiki_s_social_network');
 const UserInstance = new UserModel({
   username: `username`,
   email: `mickey.${uniqid()}@disney.com`,
