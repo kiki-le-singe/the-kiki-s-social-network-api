@@ -37,7 +37,11 @@
     "body-parser": "^1.15.0",
     "colors": "^1.1.2",
     "express": "^4.13.4",
+    "express-jwt": "^3.3.0",
+    "jsonwebtoken": "^5.5.4",
     "mongoose": "^4.4.3",
+    "mongoose-unique-validator": "^1.0.0",
+    "morgan": "^1.6.1",
     "uniqid": "^1.0.0",
     "yargs": "^3.32.0"
   }
