@@ -60,9 +60,9 @@ db.connection.on('open', () => {
 });
 
 
-/* ****************
- START THE SERVER
-***************** */
+/* ***************
+ Start the server
+**************** */
 
 app.listen(projectConfig.SERVER_PORT, () => {
   console.log(`Express server listening on projectConfig.SERVER_PORT ${projectConfig.SERVER_PORT} in ${app.settings.env} node`);
