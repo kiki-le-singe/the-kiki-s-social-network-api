@@ -4,7 +4,6 @@
 // https://fr.wikipedia.org/wiki/Liste_des_codes_HTTP
 // https://jwt.io/introduction/ (See video)
 
-import { argv } from 'yargs';
 import express from 'express'; // Web framework
 import expressJWT from 'express-jwt';
 import path from 'path'; // Utilities for dealing with file paths
@@ -13,8 +12,6 @@ import bodyParser from 'body-parser';
 import colors from 'colors';
 import morgan from 'morgan';
 
-import toolsApi from './api/tools';
-import stubTools from './stubs/tools.json';
 import projectConfig from './config';
 
 import indexRoute from './routes/index';
@@ -23,7 +20,6 @@ import userRoute from './routes/user';
 
 const applicationRoot = __dirname;
 const app = express(); // define server
-const STUB_MODE = !!argv.stub;
 const MONGODB_URI = process.env.MONGOLAB_URI || 'mongodb://localhost/the_kiki_s_social_network';
 const db = mongoose.connect(MONGODB_URI);
 const jwtCheck = expressJWT({
