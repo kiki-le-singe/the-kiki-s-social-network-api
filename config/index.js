@@ -8,4 +8,11 @@ module.exports = {
 
   // server configuration
   SERVER_PORT: process.env.PORT || 9000,
+
+  JWT: {
+    unless: {
+      path: ['/api', '/api/user/login', '/api/user/create']
+    },
+    secret: 'ilovekiki', // TODO: Should I crypt it?
+  },
 };
