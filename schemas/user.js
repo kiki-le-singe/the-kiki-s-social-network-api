@@ -1,6 +1,7 @@
 // https://github.com/Automattic/mongoose/tree/master/examples/schema
 
 import mongoose from 'mongoose'; // MongoDB integration
+import uniqueValidator from 'mongoose-unique-validator';
 
 const Schema = mongoose.Schema;
 const UserSchema = new Schema({
@@ -21,6 +22,9 @@ const UserSchema = new Schema({
 });
 const User = mongoose.model('User', UserSchema);
 
+
+// Apply the uniqueValidator plugin to userSchema.
+UserSchema.plugin(uniqueValidator);
 
 /**
  * Pre hook.
