@@ -48,6 +48,10 @@ app.use(authRoute);
 app.use(userRoute);
 
 
+/* *******
+ Database
+******* */
+
 db.connection.on('error', () => {
   console.log('connection failed to the database'.red);
 });
