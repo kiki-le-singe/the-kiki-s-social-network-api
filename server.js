@@ -1,3 +1,9 @@
+// https://scotch.io/tutorials/authenticate-a-node-js-api-with-json-web-tokens
+// https://github.com/auth0/nodejs-jwt-authentication-sample
+// https://auth0.com/blog/2015/04/09/adding-authentication-to-your-react-flux-app/
+// https://fr.wikipedia.org/wiki/Liste_des_codes_HTTP
+// https://jwt.io/introduction/ (See video)
+
 import { argv } from 'yargs';
 import express from 'express'; // Web framework
 import expressJWT from 'express-jwt';
