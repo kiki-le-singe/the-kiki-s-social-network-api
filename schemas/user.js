@@ -4,8 +4,8 @@ import mongoose from 'mongoose'; // MongoDB integration
 
 const Schema = mongoose.Schema;
 const UserSchema = new Schema({
-  username: { type: String, required: true, trim: true },
-  email: { type: String, required: true, trim: true, lowercase: true },
+  username: { type: String, required: true, trim: true, unique : true },
+  email: { type: String, required: true, trim: true, lowercase: true, unique : true },
   password: { type: String, required: true, trim: true },
   firstname: { type: String, trim: true },
   lastname: { type: String, trim: true },
