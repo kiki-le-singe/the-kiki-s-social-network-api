@@ -12,13 +12,13 @@ const UserSchema = new Schema({
   lastname: { type: String, trim: true },
   born: { type: Date },
   bio: { type: String },
-  // 0: disconnected, 1: connected, 2: disabled
-  status: { type: Number, default: 0 },
+  connectedStatus: { type: Number, default: 0 }, // 0: disconnected, 1: connected
+  lastLogin: { type: Date, default: Date.now }, // user's last login
   slug: { type: String, lowercase: true, trim: true },
   created: { type: Date, default: Date.now },
   updated: { type: Date },
-  validated: { type: Boolean, default: false },
-  access_tokens: { type: String },
+  enabledStatus: { type: Number, default: 0 }, // 0: blocked, 1: active
+  activationKey: { type: String }, // Key to activate the user from email confirmation.
 });
 const User = mongoose.model('User', UserSchema);
 
