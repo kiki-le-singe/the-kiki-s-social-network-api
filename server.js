@@ -19,6 +19,7 @@ const applicationRoot = __dirname;
 const app = express(); // define server
 const STUB_MODE = !!argv.stub;
 const MONGODB_URI = process.env.MONGOLAB_URI || 'mongodb://localhost/the_kiki_s_social_network';
+const db = mongoose.connect(MONGODB_URI);
 const jwtCheck = expressJWT({
   secret: projectConfig.JWT.secret
 });
