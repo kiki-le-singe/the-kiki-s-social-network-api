@@ -36,6 +36,7 @@ app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({ extended: true }));
 // where to serve static content
 app.use(express.static(path.join(applicationRoot, './public')));
+// https://github.com/auth0/express-jwt#usage
 app.use(jwtCheck.unless({
   path: projectConfig.JWT.unless.path
 }));
