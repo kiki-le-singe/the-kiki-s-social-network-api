@@ -65,9 +65,10 @@ router.post('/user/login', (req, res) => {
         .json({ success: false, message: 'Authentication failed. Wrong password.' });
     }
 
+    const { _id, email, slug } = user;
+
     // if user is found and password is right we create a token
-    // TODO: omit password. See: https://github.com/auth0/nodejs-jwt-authentication-sample/blob/master/user-routes.js#L16
-    const token = jwt.sign(user, projectConfig.JWT.secret, {
+    const token = jwt.sign({ _id, email, slug }, projectConfig.JWT.secret, {
       expiresIn: '2 days'
     });
 
