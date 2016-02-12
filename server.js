@@ -1,5 +1,6 @@
 import { argv } from 'yargs';
 import express from 'express'; // Web framework
+import expressJWT from 'express-jwt';
 import path from 'path'; // Utilities for dealing with file paths
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
@@ -18,6 +19,9 @@ const applicationRoot = __dirname;
 const app = express(); // define server
 const STUB_MODE = !!argv.stub;
 const MONGODB_URI = process.env.MONGOLAB_URI || 'mongodb://localhost/the_kiki_s_social_network';
+const jwtCheck = expressJWT({
+  secret: projectConfig.JWT.secret
+});
 
 /* **************
  Configuration
@@ -29,6 +33,9 @@ app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({ extended: true }));
 // where to serve static content
 app.use(express.static(path.join(applicationRoot, './public')));
+app.use(jwtCheck.unless({
+  path: projectConfig.JWT.unless.path
+}));
 
 /* *****
  Routes
