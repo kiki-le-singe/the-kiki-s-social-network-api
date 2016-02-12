@@ -4,6 +4,7 @@ import path from 'path'; // Utilities for dealing with file paths
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import colors from 'colors';
+import morgan from 'morgan';
 
 import toolsApi from './api/tools';
 import stubTools from './stubs/tools.json';
@@ -18,6 +19,12 @@ const app = express(); // define server
 const STUB_MODE = !!argv.stub;
 const MONGODB_URI = process.env.MONGOLAB_URI || 'mongodb://localhost/the_kiki_s_social_network';
 
+/* **************
+ Configuration
+*************** */
+
+// use morgan to log requests to the console
+app.use(morgan('dev'))
 // parses request body and populates request.body
 app.use(bodyParser.urlencoded({ extended: true }));
 // where to serve static content
