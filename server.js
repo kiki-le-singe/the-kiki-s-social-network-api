@@ -40,6 +40,13 @@ app.use(express.static(path.join(applicationRoot, './public')));
 app.use(jwtCheck.unless({
   path: projectConfig.JWT.unless.path
 }));
+// https://github.com/auth0/express-jwt#error-handling
+app.use(function (err, req, res, next) {
+  if (err.name === 'UnauthorizedError') {
+    res.status(401)
+      .json({ success: false, message: 'Invalid token. Authentication Required!' });
+  }
+});
 
 /* *****
  Routes
