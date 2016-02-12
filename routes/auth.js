@@ -51,6 +51,7 @@ router.post('/user/login', (req, res) => {
   // find the user
   UserModel.findOne({
     email
+    // TODO: validated: 1
   }, (err, user) => {
     if (err) console.log(err);
 
